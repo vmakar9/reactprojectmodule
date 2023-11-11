@@ -1,12 +1,13 @@
 
 import {useEffect, useState} from "react";
-import {genreService} from "../../../services/genre.service";
+import {genreService} from "../../../../services/genre.service";
 import {useNavigate} from "react-router-dom";
-import {urls} from "../../../urls/urls";
+import {urls} from "../../../../urls/urls";
 import css from "./Movie.module.css"
 import ReactStars from "react-rating-stars-component/dist/react-stars";
+
 export const Movie=({movie})=>{
-    const {id,poster_path,title,vote_average,genre_ids}= movie
+    const {id,poster_path,title,vote_average,genre_ids,release_date}= movie
 
 
     const [genresName,setGenres] = useState([])
@@ -34,8 +35,7 @@ export const Movie=({movie})=>{
           <div className={css.MovieGenres}>
               {genresNames.map((genre)=>(<p key={genre.id}>{genre.name}</p>))}
           </div>
-
-
+          <h5 className={css.Release}>Release:{release_date}</h5>
       </div>
     </div>)
 }

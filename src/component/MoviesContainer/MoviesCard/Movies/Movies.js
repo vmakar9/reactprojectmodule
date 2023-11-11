@@ -1,11 +1,14 @@
 import {useEffect, useState} from "react";
-import {movieService} from "../../../services/movie.service";
-import {Movie} from "./Movie";
+import {movieService} from "../../../../services/movie.service";
+import {Movie} from "../Movie/Movie";
+import css from './Movies.module.css'
+import {useSearchParams} from "react-router-dom";
 
 export const Movies=()=>{
     const [movies,setMovies] = useState([])
-    const [currentPage, setCurrentPage] = useState(1);
+    const [searchParams, setSearchParams] = useSearchParams();
 
+    const currentPage = searchParams.get('page') || 1;
 
     const fetchMovies = async (page) => {
         try {
@@ -21,8 +24,9 @@ export const Movies=()=>{
     }, [currentPage]);
 
     const handlePageChange = (newPage) => {
-        setCurrentPage(newPage);
+        setSearchParams({ page: newPage });
     };
+
     const totalPages = Math.min(500, movies.total_pages);
     const maxDisplayedPages = 5;
 
@@ -33,16 +37,16 @@ export const Movies=()=>{
         <div>
             {movies.results?.map(movie=><Movie key={movie.id} movie={movie}/>)}
         </div>
-        <div className={css.Pagination_container}>
-            <button className={css.Pagination_button} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
+        <div className={css.Paginationcontainer}>
+            <button className={css.Paginationbutton} onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
                 Previous Page
             </button>
             {Array.from({ length: endPage - startPage + 1 }, (_, index) => (
-                <button key={startPage + index} onClick={() => handlePageChange(startPage + index)}>
+                <button className={css.Paginationbutton} key={startPage + index} onClick={() => handlePageChange(startPage + index)}>
                     {startPage + index}
                 </button>
             ))}
-            <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
+            <button className={css.Paginationbutton} onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
                 Next Page
             </button>
         </div>

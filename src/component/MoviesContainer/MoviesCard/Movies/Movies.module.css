@@ -1,0 +1,29 @@
+.Paginationcontainer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.Paginationbutton {
+    padding: 10px;
+    margin: 0 5px;
+    background-color: #007bff;
+    color: #fff;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.Paginationbutton:hover {
+    background-color: #0056b3;
+}
+
+.Paginationbutton:disabled {
+    background-color: #ccc;
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+}
+
+.Paginationbutton.active {
+    background-color: #0056b3;
+    border: 1px solid #0056b3;
+}

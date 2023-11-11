@@ -29,8 +29,10 @@
 }
 
 .MovieTitle {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin: 10px 0;
+    height: 45px;
+
 }
 
 .MovieGenres {
@@ -46,10 +48,9 @@
     margin-right: 5px;
 }
 
-.MovieRating {
-    margin-top: 10px;
+.Release{
+    ;
 }
-
 .MovieRating {
     margin-top: 10px;
 }
